@@ -24,6 +24,7 @@ steps:
       from_secret: REGISTRY_PASSWORD
     tags:
     - v0.22.0
+    - latest
 
 #trigger:
 #  event:
