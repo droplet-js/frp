@@ -13,6 +13,8 @@ steps:
   commands:
   - tar zxvf frp_0.22.0_linux_amd64.tar.gz
   - mv frp_0.22.0_linux_amd64 frp
+  - ls
+  - ls frp
 
 - name: publish
   image: plugins/docker
