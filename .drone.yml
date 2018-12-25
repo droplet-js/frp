@@ -13,18 +13,20 @@ steps:
   commands:
   - mkdir frp
   - tar zxvf frp_0.22.0_linux_amd64.tar.gz -C frp
+  - ls
+  - ls frp
 
-- name: publish
-  image: plugins/docker
-  settings:
-    repo: v7lin/frp
-    username:
-      from_secret: REGISTRY_USER
-    password:
-      from_secret: REGISTRY_PASSWORD
-    tags:
-    - v0.22.0
-    - latest
+#- name: publish
+#  image: plugins/docker
+#  settings:
+#    repo: v7lin/frp
+#    username:
+#      from_secret: REGISTRY_USER
+#    password:
+#      from_secret: REGISTRY_PASSWORD
+#    tags:
+#    - v0.22.0
+#    - latest
 
 #trigger:
 #  event:
