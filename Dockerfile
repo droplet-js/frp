@@ -1,6 +1,6 @@
 FROM alpine:3.8
 
-COPY frp .
+COPY frp /
 
 WORKDIR /
 EXPOSE 80 443 6000 7000 7500
