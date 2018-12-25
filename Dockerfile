@@ -1,8 +1,6 @@
 FROM alpine:3.8
 
-COPY frp /
-
-RUN ls /
+COPY frp_linux_amd64 /
 
 WORKDIR /
 EXPOSE 80 443 6000 7000 7500
