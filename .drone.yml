@@ -6,24 +6,24 @@ steps:
   image: plugins/download
   settings:
     source: https://github.com/fatedier/frp/releases/download/v0.22.0/frp_0.22.0_linux_amd64.tar.gz
-    destination: frp_linux_amd64.tar.gz
+    destination: frp_0.22.0_linux_amd64.tar.gz
 
 - name: tar
   image: alpine
   commands:
-  - tar zxvf frp_linux_amd64.tar.gz
-  - ls
+  - mkdir frp
+  - tar zxvf frp_0.22.0_linux_amd64.tar.gz -C frp
 
-#- name: publish
-#  image: plugins/docker
-#  settings:
-#    repo: v7lin/frp
-#    username:
-#      from_secret: REGISTRY_USER
-#    password:
-#      from_secret: REGISTRY_PASSWORD
-#    tags:
-#    - v0.22.0
+- name: publish
+  image: plugins/docker
+  settings:
+    repo: v7lin/frp
+    username:
+      from_secret: REGISTRY_USER
+    password:
+      from_secret: REGISTRY_PASSWORD
+    tags:
+    - v0.22.0
 
 #trigger:
 #  event:
