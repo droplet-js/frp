@@ -1,0 +1,31 @@
+kind: pipeline
+name: default
+
+clone:
+  disable: true
+
+steps:
+- name: frp
+  image: docker:git
+  commands:
+  - git clone -b v0.22.0 https://github.com/fatedier/frp.git .
+
+- name: build
+  image: golang:1.10
+  commands:
+  - make
+
+#- name: publish
+#  image: plugins/docker
+#  settings:
+#    repo: v7lin/frp
+#    username:
+#      from_secret: REGISTRY_USER
+#    password:
+#      from_secret: REGISTRY_PASSWORD
+#    tags:
+#    - v0.22.0
+
+#trigger:
+#  event:
+#  - tag
