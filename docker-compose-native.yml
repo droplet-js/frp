@@ -26,7 +26,7 @@ services:
       - "--proxy_name=test"
       - "--local_ip=test"
       - "--local_port=80"
-      - "--sd=test"
+      - "--sd=test" # subdomain
       - "--custom_domain=test.${SERVER_DOMAIN:-localhost}"
       - "--server_addr=${FRP_SERVER_DOMAIN:-host.docker.internal}:7000"
       - "--token=${FRP_TOKEN:-frp}"
