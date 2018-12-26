@@ -18,7 +18,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ../dev-ops-repo/traefik/acme:/etc/traefik/acme
 #    environment:
-#      - TZ=${TIME_ZONE}
+#      - TZ=${TIME_ZONE:-Asia/Shanghai}
     command:
       - "--api"
       - "--entrypoints=Name:http Address::80"
@@ -48,7 +48,7 @@ services:
 ##    ports:
 ##      - 80
 #    environment:
-#      - TZ=${TIME_ZONE}
+#      - TZ=${TIME_ZONE:-Asia/Shanghai}
 #    labels:
 #      - "traefik.enable=true"
 #      - "traefik.backend=www"
@@ -69,7 +69,7 @@ services:
       - 7000:7000 # bind
 #      - 7500 # dashboard
     environment:
-      - TZ=${TIME_ZONE}
+      - TZ=${TIME_ZONE:-Asia/Shanghai}
     command:
       - "--log_level=info"
       - "--token=${FRP_TOKEN:-frp}"

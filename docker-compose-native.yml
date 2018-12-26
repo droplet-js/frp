@@ -12,7 +12,7 @@ services:
 #    ports:
 #      - 80
     environment:
-      - TZ=${TIME_ZONE}
+      - TZ=${TIME_ZONE:-Asia/Shanghai}
 
   frpc-test:
     container_name: frpc-test
@@ -20,7 +20,7 @@ services:
     restart: always
     hostname: frpc-test
     environment:
-      - TZ=${TIME_ZONE}
+      - TZ=${TIME_ZONE:-Asia/Shanghai}
     command:
       - "http"
       - "--proxy_name=test"
@@ -29,7 +29,7 @@ services:
       - "--sd=test"
       - "--custom_domain=test.${SERVER_DOMAIN:-localhost}"
       - "--server_addr=${FRP_SERVER_DOMAIN:-host.docker.internal}:7000"
-      - "--token=${FRP_TOKEN}"
+      - "--token=${FRP_TOKEN:-frp}"
 #      - "--log_level=info"
     depends_on:
       - test
