@@ -6,7 +6,7 @@ steps:
   image: plugins/docker
   settings:
     repo: v7lin/frpc
-    dockerfile: frpc/Dockerfile
+    dockerfile: Dockerfile_frpc
     target: prod
     username:
       from_secret: REGISTRY_USER
@@ -20,7 +20,7 @@ steps:
   image: plugins/docker
   settings:
     repo: v7lin/frps
-    dockerfile: frps/Dockerfile
+    dockerfile: Dockerfile_frps
     target: prod
     username:
       from_secret: REGISTRY_USER
