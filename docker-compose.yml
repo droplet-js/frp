@@ -40,21 +40,21 @@ services:
       - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN:-localhost}"
 
-  www:
-    container_name: www
-    image: nginx:1.15.7
-    restart: always
-    hostname: www
-#    ports:
-#      - 80
-    environment:
-      - TZ=${TIME_ZONE}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.backend=www"
-      - "traefik.port=80"
-      - "traefik.frontend.entryPoints=http"
-      - "traefik.frontend.rule=Host:www.${SERVER_DOMAIN:-localhost}"
+#  www:
+#    container_name: www
+#    image: nginx:1.15.7
+#    restart: always
+#    hostname: www
+##    ports:
+##      - 80
+#    environment:
+#      - TZ=${TIME_ZONE}
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.backend=www"
+#      - "traefik.port=80"
+#      - "traefik.frontend.entryPoints=http"
+#      - "traefik.frontend.rule=Host:www.${SERVER_DOMAIN:-localhost}"
 
   # bind: frp.${SERVER_DOMAIN:-localhost}
   frps:

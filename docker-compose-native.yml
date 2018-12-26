@@ -13,8 +13,6 @@ services:
 #      - 80
     environment:
       - TZ=${TIME_ZONE}
-    labels:
-      - ""
 
   frpc:
     container_name: frpc
