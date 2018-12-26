@@ -6,7 +6,7 @@ steps:
   image: plugins/docker
   settings:
     repo: v7lin/frpc
-    context: frpc
+    context: ./frpc
     dockerfile: Dockerfile
     target: prod
     username:
@@ -21,7 +21,7 @@ steps:
   image: plugins/docker
   settings:
     repo: v7lin/frps
-    context: frps
+    context: ./frps
     dockerfile: Dockerfile
     target: prod
     username:
