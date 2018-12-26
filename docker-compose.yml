@@ -4,9 +4,6 @@ version: "3.7"
 # 服务
 services:
 
-  # alpine镜像执行以下命令即可支持设置时区
-  # apk --no-cache add curl bash tree tzdata
-
   # 暂不支持设置时区
   traefik:
     container_name: traefik
@@ -16,7 +13,7 @@ services:
     ports:
       - 80:80
       - 443:443
-#      - 8080:8080
+      - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ../dev-ops-repo/traefik/acme:/etc/traefik/acme
@@ -43,6 +40,22 @@ services:
       - "traefik.frontend.entryPoints=http"
       - "traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN:-localhost}"
 
+  www:
+    container_name: www
+    image: nginx:1.15.7
+    restart: always
+    hostname: www
+#    ports:
+#      - 80
+    environment:
+      - TZ=${TIME_ZONE}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=www"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:www.${SERVER_DOMAIN:-localhost}"
+
   # bind: frp.${SERVER_DOMAIN:-localhost}
   frps:
     container_name: frps
@@ -58,8 +71,9 @@ services:
     environment:
       - TZ=${TIME_ZONE}
     command:
-#      - "log_level=info"
+      - "--log_level=info"
       - "--token=${FRP_TOKEN}"
+      - "--dashboard_port=7500" # 没有默认值
       - "--dashboard_user=${FRPS_DASHBOARD_USER}"
       - "--dashboard_pwd=${FRPS_DASHBOARD_PWD}"
       - "--vhost_http_port=80"
