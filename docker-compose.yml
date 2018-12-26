@@ -72,10 +72,10 @@ services:
       - TZ=${TIME_ZONE}
     command:
       - "--log_level=info"
-      - "--token=${FRP_TOKEN}"
+      - "--token=${FRP_TOKEN:-frp}"
       - "--dashboard_port=7500" # 没有默认值
-      - "--dashboard_user=${FRP_DASHBOARD_USER}"
-      - "--dashboard_pwd=${FRP_DASHBOARD_PWD}"
+      - "--dashboard_user=${FRP_DASHBOARD_USER:-frp}"
+      - "--dashboard_pwd=${FRP_DASHBOARD_PWD:-frp}"
       - "--vhost_http_port=80"
 #      - "--vhost_https_port=443"
       - "--subdomain_host=frp.${SERVER_DOMAIN:-localhost}"
