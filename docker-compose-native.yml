@@ -23,6 +23,7 @@ services:
       - TZ=${TIME_ZONE}
     command:
       - "http"
+      - "--proxy_name=test"
       - "--local_ip=test"
       - "--local_port=80"
       - "--sd=test"
