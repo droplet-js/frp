@@ -28,7 +28,7 @@ services:
       - "--local_port=80"
       - "--sd=test"
       - "--custom_domain=test.${SERVER_DOMAIN:-localhost}"
-      - "--server_addr=${FRP_SERVER_DOMAIN:-host.docker.internal:7000}"
+      - "--server_addr=${FRP_SERVER_DOMAIN:-host.docker.internal}:7000"
       - "--token=${FRP_TOKEN}"
 #      - "--log_level=info"
     depends_on:
