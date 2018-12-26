@@ -1,0 +1,29 @@
+# 版本
+version: "3.7"
+
+# 服务
+services:
+
+  www:
+    container_name: www
+    image: nginx:1.15.7
+    restart: always
+    hostname: www
+#    ports:
+#      - 80
+    environment:
+      - TZ=${TIME_ZONE}
+    labels:
+      - ""
+
+  frpc:
+    container_name: frpc
+    image: v7lin/frpc:0.22.0
+    restart: always
+    hostname: frpc
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=${TIME_ZONE}
+    depends_on:
+      - www

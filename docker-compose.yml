@@ -1,0 +1,77 @@
+# 版本
+version: "3.7"
+
+# 服务
+services:
+
+  # alpine镜像执行以下命令即可支持设置时区
+  # apk --no-cache add curl bash tree tzdata
+
+  # 暂不支持设置时区
+  traefik:
+    container_name: traefik
+    image: traefik:1.7.6
+    restart: always
+    hostname: traefik
+    ports:
+      - 80:80
+      - 443:443
+#      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../dev-ops-repo/traefik/acme:/etc/traefik/acme
+#    environment:
+#      - TZ=${TIME_ZONE}
+    command:
+      - "--api"
+      - "--entrypoints=Name:http Address::80"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+      - "--acme"
+      - "--acme.storage=/etc/traefik/acme/acme.json"
+      - "--acme.entryPoint=https"
+      - "--acme.httpChallenge.entryPoint=http"
+      - "--acme.onHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.email=${TRAEFIK_ACME_EMAIL:-foobar@example.com}"
+      - "--docker"
+      - "--docker.exposedbydefault=false"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.port=8080"
+      - "traefik.frontend.entryPoints=http"
+      - "traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN:-localhost}"
+
+  # bind: frp.${SERVER_DOMAIN:-localhost}
+  frps:
+    container_name: frps
+    image: v7lin/frps:0.22.0
+    restart: always
+    hostname: frps
+    ports:
+#      - 80 # vhost - http
+#      - 443 # vhost - https
+#      - 6000
+      - 7000:7000 # bind
+#      - 7500 # dashboard
+    environment:
+      - TZ=${TIME_ZONE}
+    command:
+#      - "log_level=info"
+      - "--token=${FRP_TOKEN}"
+      - "--dashboard_user=${FRPS_DASHBOARD_USER}"
+      - "--dashboard_pwd=${FRPS_DASHBOARD_PWD}"
+      - "--vhost_http_port=80"
+#      - "--vhost_https_port=443"
+      - "--subdomain_host=frp.${SERVER_DOMAIN:-localhost}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.vhost.backend=vhost"
+      - "traefik.vhost.port=80"
+      - "traefik.vhost.frontend.entryPoints=http"
+      - "traefik.vhost.frontend.rule=HostRegexp:test.${SERVER_DOMAIN:-localhost},{subdomain:[a-z]+}.frp.${SERVER_DOMAIN:-localhost}"
+      - "traefik.dashboard.backend=dashboard"
+      - "traefik.dashboard.port=7500"
+      - "traefik.dashboard.frontend.entryPoints=http"
+      - "traefik.dashboard.frontend.rule=Host:frps.${SERVER_DOMAIN:-localhost}"
