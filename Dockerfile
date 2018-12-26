@@ -1,5 +1,7 @@
 FROM alpine:3.8
 
+RUN apk --no-cache add curl bash tree tzdata
+
 COPY frp_linux_amd64 /
 
 WORKDIR /

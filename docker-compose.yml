@@ -46,7 +46,6 @@ services:
 
   # bind: frp.${SERVER_DOMAIN}
   # localhost 模式需修改 frpc.ini 和 frps.ini
-  # 暂不支持设置时区
   frps:
     container_name: frps
     image: v7lin/frp:v0.22.0
@@ -60,8 +59,8 @@ services:
 #      - 7500 # dashboard
     volumes:
       - ./frp/frps.ini:/frps.ini
-#    environment:
-#      - TZ=${TIME_ZONE}
+    environment:
+      - TZ=${TIME_ZONE}
     entrypoint:
       - /frps
     command: -c frps.ini

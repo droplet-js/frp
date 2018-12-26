@@ -14,7 +14,6 @@ services:
     environment:
       - TZ=${TIME_ZONE}
 
-  # 暂不支持设置时区
   frpc:
     container_name: frpc
     image: v7lin/frp:v0.22.0
@@ -28,8 +27,8 @@ services:
 #      - 7500 # dashboard
     volumes:
       - ./frp/frpc.ini:/frpc.ini
-#    environment:
-#      - TZ=${TIME_ZONE}
+    environment:
+      - TZ=${TIME_ZONE}
     command: -c frpc.ini
     entrypoint:
       - /frpc
