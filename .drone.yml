@@ -1,5 +1,9 @@
 kind: pipeline
-name: default
+name: amd64
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
 - name: publish-frpc
@@ -15,6 +19,7 @@ steps:
       from_secret: REGISTRY_PASSWORD
     tags:
     - 0.22.0
+    - 0.22.0-amd64
     - latest
 
 - name: publish-frps
@@ -30,8 +35,43 @@ steps:
       from_secret: REGISTRY_PASSWORD
     tags:
     - 0.22.0
+    - 0.22.0-amd64
     - latest
 
-#trigger:
-#  event:
-#  - tag
+---
+kind: pipeline
+name: arm64
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: publish-frpc
+  image: plugins/docker
+  settings:
+    repo: v7lin/frpc
+    context: frpc
+    dockerfile: frpc/Dockerfile-arm64
+    target: prod
+    username:
+      from_secret: REGISTRY_USER
+    password:
+      from_secret: REGISTRY_PASSWORD
+    tags:
+    - 0.22.0-arm64
+
+- name: publish-frps
+  image: plugins/docker
+  settings:
+    repo: v7lin/frps
+    context: frps
+    dockerfile: frps/Dockerfile-arm64
+    target: prod
+    username:
+      from_secret: REGISTRY_USER
+    password:
+      from_secret: REGISTRY_PASSWORD
+    tags:
+    - 0.22.0-arm64
+
