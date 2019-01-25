@@ -1,6 +1,6 @@
 # --- clone ---
 
-FROM alpine:3.8 as clone
+FROM arm64v8/alpine:3.8 as clone
 
 ENV FRP_VERSION 0.23.1
 ENV FRP_ARCH arm64
@@ -10,7 +10,7 @@ RUN tar xzf frp_${FRP_VERSION}_linux_${FRP_ARCH}.tar.gz
 
 # --- prod ---
 
-FROM alpine:3.8 as prod
+FROM arm64v8/alpine:3.8 as prod
 
 ENV FRP_VERSION 0.23.1
 ENV FRP_ARCH arm64

@@ -38,10 +38,6 @@ steps:
     - 0.23.1-amd64
     - latest
 
-trigger:
-  event:
-  - tag
-
 ---
 kind: pipeline
 name: arm64
@@ -78,20 +74,3 @@ steps:
       from_secret: REGISTRY_PASSWORD
     tags:
     - 0.23.1-arm64
-
-trigger:
-  event:
-  - tag
-
----
-kind: pipeline
-name: arm64-test
-
-platform:
-  os: linux
-  arch: arm64
-
-- name: test
-  image: alpine:3.8
-  commands:
-  - ls
