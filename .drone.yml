@@ -18,8 +18,8 @@ steps:
     password:
       from_secret: REGISTRY_PASSWORD
     tags:
-    - 0.22.0
-    - 0.22.0-amd64
+    - 0.23.1
+    - 0.23.1-amd64
     - latest
 
 - name: publish-frps
@@ -34,8 +34,8 @@ steps:
     password:
       from_secret: REGISTRY_PASSWORD
     tags:
-    - 0.22.0
-    - 0.22.0-amd64
+    - 0.23.1
+    - 0.23.1-amd64
     - latest
 
 ---
@@ -59,7 +59,7 @@ steps:
     password:
       from_secret: REGISTRY_PASSWORD
     tags:
-    - 0.22.0-arm64
+    - 0.23.1-arm64
 
 - name: publish-frps
   image: plugins/docker
@@ -73,5 +73,5 @@ steps:
     password:
       from_secret: REGISTRY_PASSWORD
     tags:
-    - 0.22.0-arm64
+    - 0.23.1-arm64
 
