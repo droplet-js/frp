@@ -59,7 +59,7 @@ services:
   # bind: frp.${SERVER_DOMAIN:-localhost}
   frps:
     container_name: frps
-    image: v7lin/frps:0.23.1
+    image: v7lin/frps:0.23.2
     restart: always
     hostname: frps
     ports:
