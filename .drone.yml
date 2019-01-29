@@ -1,5 +1,5 @@
 kind: pipeline
-name: amd64
+name: default
 
 platform:
   os: linux
