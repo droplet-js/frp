@@ -16,7 +16,7 @@ services:
 
   frpc-test:
     container_name: frpc-test
-    image: v7lin/frpc:0.23.3
+    image: v7lin/frpc:0.24.0
     restart: always
     hostname: frpc-test
     environment:
