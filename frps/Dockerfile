@@ -22,4 +22,4 @@ COPY --from=clone frp_${FRP_VERSION}_linux_${FRP_ARCH}/frps /frps
 WORKDIR /
 EXPOSE 80 443 6000 7000 7500
 
-ENTRYPOINT ["/frps"]
+#ENTRYPOINT ["/frps"]

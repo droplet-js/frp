@@ -27,4 +27,4 @@ RUN chmod +x /docker-host.sh
 
 WORKDIR /
 
-ENTRYPOINT ["/docker-host.sh && /frpc"]
+#ENTRYPOINT ["/frpc"]
