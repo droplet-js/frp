@@ -19,12 +19,11 @@ RUN apk --no-cache add curl bash tree tzdata
 
 # 让 Linux 像 Mac 一样支持 host.docker.internal
 RUN apk --no-cache add iproute2
-COPY docker-host.sh /docker-host.sh
-RUN chmod +x docker-host.sh; \
-    /docker-host.sh
 
 COPY --from=clone frp_${FRP_VERSION}_linux_${FRP_ARCH}/frpc /frpc
 
+COPY docker-host.sh /docker-host.sh
+
 WORKDIR /
 
-ENTRYPOINT ["/frpc"]
+ENTRYPOINT ['/docker-host.sh']
