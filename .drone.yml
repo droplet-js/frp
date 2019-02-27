@@ -18,60 +18,59 @@ steps:
     password:
       from_secret: REGISTRY_PASSWORD
     tags:
-    - test
-#    - 0.24.1
-#    - 0.24.1-amd64
-#    - latest
-#
-#- name: publish-frps
-#  image: plugins/docker
-#  settings:
-#    repo: v7lin/frps
-#    context: frps
-#    dockerfile: frps/Dockerfile
-#    target: prod
-#    username:
-#      from_secret: REGISTRY_USER
-#    password:
-#      from_secret: REGISTRY_PASSWORD
-#    tags:
-#    - 0.24.1
-#    - 0.24.1-amd64
-#    - latest
-#
-#---
-#kind: pipeline
-#name: arm64
-#
-#platform:
-#  os: linux
-#  arch: arm64
-#
-#steps:
-#- name: publish-frpc
-#  image: plugins/docker
-#  settings:
-#    repo: v7lin/frpc
-#    context: frpc
-#    dockerfile: frpc/Dockerfile-arm64
-#    target: prod
-#    username:
-#      from_secret: REGISTRY_USER
-#    password:
-#      from_secret: REGISTRY_PASSWORD
-#    tags:
-#    - 0.24.1-arm64
-#
-#- name: publish-frps
-#  image: plugins/docker
-#  settings:
-#    repo: v7lin/frps
-#    context: frps
-#    dockerfile: frps/Dockerfile-arm64
-#    target: prod
-#    username:
-#      from_secret: REGISTRY_USER
-#    password:
-#      from_secret: REGISTRY_PASSWORD
-#    tags:
-#    - 0.24.1-arm64
+    - 0.24.1
+    - 0.24.1-amd64
+    - latest
+
+- name: publish-frps
+  image: plugins/docker
+  settings:
+    repo: v7lin/frps
+    context: frps
+    dockerfile: frps/Dockerfile
+    target: prod
+    username:
+      from_secret: REGISTRY_USER
+    password:
+      from_secret: REGISTRY_PASSWORD
+    tags:
+    - 0.24.1
+    - 0.24.1-amd64
+    - latest
+
+---
+kind: pipeline
+name: arm64
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: publish-frpc
+  image: plugins/docker
+  settings:
+    repo: v7lin/frpc
+    context: frpc
+    dockerfile: frpc/Dockerfile-arm64
+    target: prod
+    username:
+      from_secret: REGISTRY_USER
+    password:
+      from_secret: REGISTRY_PASSWORD
+    tags:
+    - 0.24.1-arm64
+
+- name: publish-frps
+  image: plugins/docker
+  settings:
+    repo: v7lin/frps
+    context: frps
+    dockerfile: frps/Dockerfile-arm64
+    target: prod
+    username:
+      from_secret: REGISTRY_USER
+    password:
+      from_secret: REGISTRY_PASSWORD
+    tags:
+    - 0.24.1-arm64
