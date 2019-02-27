@@ -26,4 +26,4 @@ COPY docker-host.sh /docker-host.sh
 
 WORKDIR /
 
-ENTRYPOINT ['/docker-host.sh']
+ENTRYPOINT ["/docker-host.sh"]
