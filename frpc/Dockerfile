@@ -23,6 +23,7 @@ RUN apk --no-cache add iproute2
 COPY --from=clone frp_${FRP_VERSION}_linux_${FRP_ARCH}/frpc /frpc
 
 COPY docker-host.sh /docker-host.sh
+RUN chmod +x /docker-host.sh
 
 WORKDIR /
 
