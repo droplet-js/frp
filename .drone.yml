@@ -38,6 +38,10 @@ steps:
     - 0.24.1-amd64
     - latest
 
+trigger:
+  event:
+  - tag
+
 ---
 kind: pipeline
 name: arm64
@@ -74,3 +78,7 @@ steps:
       from_secret: REGISTRY_PASSWORD
     tags:
     - 0.24.1-arm64
+
+trigger:
+  event:
+  - tag
