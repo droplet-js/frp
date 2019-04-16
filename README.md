@@ -29,7 +29,7 @@ FRP_SERVER_DOMAIN=frp.{your domain}
 frps
 ````
   frps:
-    image: v7lin/frps:0.24.1
+    image: v7lin/frps
     ports:
       - 80:80 # vhost - http
       - 443:443 # vhost - https
@@ -60,7 +60,7 @@ services:
   # SSH内网服务器
   frpc-ssh:
     container_name: frpc-ssh
-    image: v7lin/frpc:0.24.1
+    image: v7lin/frpc
     restart: always
     environment:
       - TZ=${TIME_ZONE:-Asia/Shanghai}
@@ -94,7 +94,7 @@ services:
 
   test-frpc:
     container_name: test-frpc
-    image: v7lin/frpc:0.24.1
+    image: v7lin/frpc
     restart: always
     environment:
       - TZ=${TIME_ZONE:-Asia/Shanghai}
