@@ -2,6 +2,7 @@
 
 [![Build Status](https://cloud.drone.io/api/badges/v7lin/frp/status.svg)](https://cloud.drone.io/v7lin/frp)
 [![Docker Pulls](https://img.shields.io/docker/pulls/v7lin/frps.svg)](https://hub.docker.com/r/v7lin/frps)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/v7lin/frp/blob/master/LICENSE)
 
 ### 项目源码
 
